@@ -6,12 +6,12 @@ The companion code is deliberately simple to focus on Kafka integration with Aer
 
 Clone the repository using:
 ```bash
-git clone https://github.com/helipilot50/aerospike-counters.git
+https://github.com/helipilot50/aerospike-and-kafka.git
 ```
 
 # Local Aerospike database using docker
 ```bash
-sudo docker-compose -f aerospike-single-docker-compose.yml up
+sudo docker-compose -f aerospike-kafka-docker-compose.yml up
 ```
 # Run C# example
 ```bash
