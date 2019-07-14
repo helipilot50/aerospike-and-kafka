@@ -41,4 +41,4 @@ services:
       NAMESPACE: "test"
       MEM_GB: 12
     # command:
-    # - /aerospike/aql/run-aql.shversion: '3'
+    # - /aerospike/aql/run-aql.sh
