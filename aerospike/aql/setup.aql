@@ -1,0 +1,2 @@
+CREATE INDEX notification-time-stamp ON aapram.notifications (n-timestamp) NUMERIC 
+CREATE INDEX notification-user ON aapram.notifications (n-user) STRING
