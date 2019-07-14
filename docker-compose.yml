@@ -1,3 +1,5 @@
+version: '3'
+services:
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     environment:
@@ -22,7 +24,7 @@
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_CREATE_TOPICS: "aerospike-sink:1:1,aerospike-source"
+      KAFKA_CREATE_TOPICS: "aerospike-sink:1:1,aerospike-source:1:1"
   aerospikedb:
     image: aerospike/aerospike-server:latest
     depends_on:
@@ -31,10 +33,10 @@
     - 3000:3000
     - 3001:3001
     volumes:
-    - ../aerospike/etc:/etc/aerospike
-    - ../aerospike/log:/aerospike/log
-    - ../aerospike/data:/aerospike/data
-    - ../aerospike/aql:/aerospike/aql
+    - ./aerospike/etc:/etc/aerospike
+    - ./aerospike/log:/aerospike/log
+    - ./aerospike/data:/aerospike/data
+    - ./aerospike/aql:/aerospike/aql
     environment:
       NAMESPACE: "test"
       MEM_GB: 12

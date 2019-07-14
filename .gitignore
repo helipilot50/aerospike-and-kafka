@@ -1,0 +1,6 @@
+aerospike/data
+aerospike/log
+dotnet/consumer/obj
+dotnet/producer/obj
+java/.settings
+java/target
