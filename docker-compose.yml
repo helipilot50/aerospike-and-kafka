@@ -24,21 +24,31 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_CREATE_TOPICS: "aerospike-sink:1:1,aerospike-source:1:1"
+      KAFKA_CREATE_TOPICS: "aerospike-source:1:1"
+  kafkacli:
+    image: taion809/kafka-cli:0.10.2.0
+    command: kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic aerospike-source --from-beginning
+    stdin_open: true
+    tty: true
+    links:
+      - zookeeper
+    depends_on:
+      - zookeeper
   aerospikedb:
-    image: aerospike/aerospike-server:latest
+    container_name: aerospike-enterprise-server
+    build:
+      context: ./aerospike/enterprise-server/
+      args:
+        AEROSPIKE_USER_NAME: "your aerospike download user name"
+        AEROSPIKE_PASSWORD: "<your aerospike download password>"
     depends_on:
     - kafka
     ports:  
     - 3000:3000
     - 3001:3001
+    - 3002:3002
+    - 3003:3003
     volumes:
     - ./aerospike/etc:/etc/aerospike
     - ./aerospike/log:/aerospike/log
     - ./aerospike/data:/aerospike/data
-    - ./aerospike/aql:/aerospike/aql
-    environment:
-      NAMESPACE: "test"
-      MEM_GB: 12
-    # command:
-    # - /aerospike/aql/run-aql.sh

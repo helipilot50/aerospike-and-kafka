@@ -1,1 +1,0 @@
-sleep 10 && aql -f setup.adl
