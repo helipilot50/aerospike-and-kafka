@@ -10,6 +10,7 @@ import com.aerospike.client.Bin;
 import com.aerospike.client.Key;
 import com.aerospike.client.Record;
 import com.aerospike.client.Operation;
+import com.aerospike.client.AerospikeException.Connection;
 
 import net.helipilot50.aerospike.kafka.Constants;
 
@@ -33,7 +34,7 @@ public class ProducerMain extends TimerTask {
     };
 
     private static User randomUser() {
-        int index = (int)(Math.random() * users.size());
+        int index = (int) (Math.random() * users.size());
         return users.get(index);
     }
 
@@ -47,7 +48,28 @@ public class ProducerMain extends TimerTask {
     public AerospikeClient asClient;
 
     public ProducerMain() {
-        this.asClient = new AerospikeClient("localhost", 3000);
+        int attempts = 0;
+        boolean attemptConnection = true;
+        while (attemptConnection) {
+            attempts += 1;
+            try {
+                System.out.println("Connect to aerospike, attempt: " + attempts );
+                this.asClient = new AerospikeClient("localhost", 3000);
+                break;
+            } catch (Connection conn) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                if (attempts > 5) {
+                    attemptConnection = false;
+                    System.out.println("Cannot connect to aerospike, attempted: " + attempts );
+                    throw conn;
+                }
+            }
+        }
     }
 
     @Override

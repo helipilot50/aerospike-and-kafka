@@ -7,3 +7,5 @@ java/target
 docker-compose-peter.yml
 digestlog.log1
 features.conf
+traffic-simulator/.settings
+traffic-simulator/target

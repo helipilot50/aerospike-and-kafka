@@ -39,8 +39,8 @@ services:
     build:
       context: ./aerospike/enterprise-server/
       args:
-        AEROSPIKE_USER_NAME: "your aerospike download user name"
-        AEROSPIKE_PASSWORD: "<your aerospike download password>"
+        AEROSPIKE_USER_NAME: "<user name>"
+        AEROSPIKE_PASSWORD: "<password>"
     depends_on:
     - kafka
     ports:  
@@ -52,3 +52,12 @@ services:
     - ./aerospike/etc:/etc/aerospike
     - ./aerospike/log:/aerospike/log
     - ./aerospike/data:/aerospike/data
+  simulator:
+    container_name: traffic_simulator
+    build:
+      context: ./traffic-simulator/
+    links:
+    - aerospikedb
+    depends_on:
+    - aerospikedb
+    
