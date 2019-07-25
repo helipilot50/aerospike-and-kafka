@@ -72,7 +72,7 @@ public class ProducerMain extends TimerTask {
         System.out.println("Aerospike Kafka Producer");
         ProducerMain producer = new ProducerMain();
         Timer timer = new Timer();
-        timer.schedule(producer, 0, 1000);
+        timer.schedule(producer, 0, 500);
     }
 
     public AerospikeClient asClient;
@@ -114,7 +114,10 @@ public class ProducerMain extends TimerTask {
 
         Key recordKey = new Key(Constants.NAMESPACE, Constants.RECORD_SET, userId);
 
-        asClient.operate(null, recordKey, MapOperation.increment(
+        Bin nameBin = new Bin(Constants.NAME_BIN, userId);
+
+        asClient.operate(null, recordKey, Operation.put(nameBin),
+        MapOperation.increment(
             MapPolicy.Default, 
             Constants.VISIT_BIN, 
             Value.get(siteUrl),
