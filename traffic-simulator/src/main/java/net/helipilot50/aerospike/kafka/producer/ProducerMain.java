@@ -33,6 +33,12 @@ public class ProducerMain extends TimerTask {
             add("james-189");
             add("sarah-289");
             add("mark-281");
+            add("marius-928");
+            add("katja-928");
+            add("pierre-921");
+            add("michal-921");
+            add("tim-1999-2019");
+            add("peter-1999-2019");
         }
     };
 
@@ -46,7 +52,7 @@ public class ProducerMain extends TimerTask {
             add("http://some.place.com/app/catalog/doll");
             add("http://some.place.com/app/catalog/teddybare");
             add("http://some.place.com/app//catalog/banana");
-            add("http://some.place.com/app/catalog/pair");
+            add("http://some.place.com/app/catalog/pare");
             add("http://some.place.com/app/catalog/lemon");
             add("http://some.place.com/app/catalog/pineapple");
             add("http://some.place.com/app/catalog/lego");
@@ -55,6 +61,21 @@ public class ProducerMain extends TimerTask {
             add("http://some.place.com/app/catalog/blocks");
             add("http://some.place.com/app/catalog/bread");
             add("http://some.place.com/app/catalog/glue");
+            add("http://some.place.com/app/catalog/arduino");
+            add("http://some.place.com/app/catalog/arduino/uno");
+            add("http://some.place.com/app/catalog/arduino/due");
+            add("http://some.place.com/app/catalog/arduino/Mega");
+            add("http://some.place.com/app/catalog/arduino/Leonardo");
+            add("http://some.place.com/app/catalog/arduino/lilypad");
+            add("http://some.place.com/app/catalog/pi/4");
+            add("http://some.place.com/app/catalog/pi/3Aplus");
+            add("http://some.place.com/app/catalog/pi/3Bplus");
+            add("http://some.place.com/app/catalog/pi/zeroW");
+            add("http://some.place.com/app/catalog/pi/3");
+            add("http://some.place.com/app/catalog/pi/zero");
+            add("http://some.place.com/app/catalog/pi/2");
+            add("http://some.place.com/app/catalog/pi/Aplus");
+            add("http://some.place.com/app/catalog/pi/B");
         }
     };
 
@@ -64,7 +85,7 @@ public class ProducerMain extends TimerTask {
     }
 
     private static String randomSite() {
-        int index = (int) (Math.random() * users.size());
+        int index = (int) (Math.random() * sites.size());
         return sites.get(index);
     }
 
