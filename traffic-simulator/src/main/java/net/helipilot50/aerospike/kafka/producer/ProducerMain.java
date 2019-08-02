@@ -105,7 +105,7 @@ public class ProducerMain extends TimerTask {
             attempts += 1;
             try {
                 System.out.println("Connect to aerospike, attempt: " + attempts);
-                this.asClient = new AerospikeClient("aerospike", 3000);
+                this.asClient = new AerospikeClient(Constants.AEROSPILE_HOST, 3000);
                 attemptConnection = false;
             } catch (Connection conn) {
                 try {

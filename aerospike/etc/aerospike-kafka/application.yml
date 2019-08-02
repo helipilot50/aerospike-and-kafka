@@ -5,7 +5,7 @@ connector:
     mode: static
   kafka:
     bootstrapServers:
-      - localhost:9092
+      - kafka:9092
     producerPoolSize: 1
   ticker:
     enabled: true
