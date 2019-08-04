@@ -1,8 +1,12 @@
 @startuml
 
-
+'left to right direction
+together {
+component [Kafka\nCli] as kafCli
 component [Site  Tracking\nTraffice simulator] as traffic
+}
 
+package "Aerospike" {
 () "Aerospike\nClient" as asClient
 component [Aerospike\nEnterprise\nEdition] as asee
 asClient - asee
@@ -10,14 +14,25 @@ asClient - asee
 () "Outbound\nKafka" as asOutbound
 component [Aerospike\nOutbound Kafka\nConnector] as asKafka
 asOutbound - asKafka
-
+}
+package "Kafka and Zookeeper" {
 () "Kafka\nclient" as kafClient
 component [Kafka\nCluster] as kafCluster
 kafClient - kafCluster
 
+() "Zookeeper\nClient" as zooClient
+component [Zoo\nKeeper] as zookeeper
+zooClient - zookeeper
+}
+
 traffic --> asClient
 
 asee --> asOutbound
+asKafka ..> zooClient: uses
+zookeeper <..> kafCluster
 
 asKafka --> kafClient
+
+kafCli .d.> zooClient: uses
+kafCli -d-> kafClient
 @enduml
