@@ -1,0 +1,23 @@
+@startuml
+
+
+component [Site  Tracking\nTraffice simulator] as traffic
+
+() "Aerospike\nClient" as asClient
+component [Aerospike\nEnterprise\nEdition] as asee
+asClient - asee
+
+() "Outbound\nKafka" as asOutbound
+component [Aerospike\nOutbound Kafka\nConnector] as asKafka
+asOutbound - asKafka
+
+() "Kafka\nclient" as kafClient
+component [Kafka\nCluster] as kafCluster
+kafClient - kafCluster
+
+traffic --> asClient
+
+asee --> asOutbound
+
+asKafka --> kafClient
+@enduml
