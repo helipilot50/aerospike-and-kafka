@@ -20,13 +20,12 @@ The solution consists of these components
 This exeammple uses Docker and Docker Compose to create the environment to track users visits to a website, as log level data, then export it to a Kafka topic for downstream aggregation, transformation and analysis.
 
 ### deployment
-Docker containers
-
 
 Clone the repository using:
 ```bash
-https://github.com/helipilot50/aerospike-and-kafka.git
+git clone https://github.com/helipilot50/aerospike-and-kafka.git
 ```
+**You will need an Aerospike Enterprise user name and password**
 
 #### Build Docker images
 ```bash
