@@ -1,0 +1,52 @@
+{
+    "msg": "write",
+    "key": [
+        "test",
+        "site-tracking",
+        "fDipglBHakGbYjkqPOc1kSElCQw=",
+        null
+    ],
+    "gen": 0,
+    "exp": 0,
+    "lut": 0,
+    "bins": [
+        {
+            "name": "name-bin",
+            "type": "str",
+            "value": "mary-456"
+        },
+        {
+            "name": "visit-bin",
+            "type": "map",
+            "value": {
+                "http://some.place.com/app/catalog/pi/zeroW": 2,
+                "http://some.place.com/app/catalog/pi/Aplus": 3,
+                "http://some.place.com/app/catalog/pi/3Aplus": 2,
+                "http://some.place.com/app/catalog/pi/zero": 2,
+                "http://some.place.com/app//catalog/banana": 1,
+                "http://some.place.com/app/catalog/glue": 2,
+                "http://some.place.com/app/catalog/bike": 3,
+                "http://some.place.com/app/catalog/arduino/Mega": 1,
+                "http://some.place.com/app/catalog/lego": 2,
+                "http://some.place.com/app/catalog/paint": 2,
+                "http://some.place.com/app/catalog/pi/2": 3,
+                "http://some.place.com/app/catalog/arduino/uno": 2,
+                "http://some.place.com/app/catalog/bread": 2,
+                "http://some.place.com/app/catalog/arduino": 2,
+                "http://some.place.com/app/catalog/teddybare": 2,
+                "http://some.place.com/app/catalog/cloth": 2,
+                "http://some.place.com/app/catalog/doll": 2,
+                "http://some.place.com/app/catalog/pi/3Bplus": 1,
+                "http://some.place.com/app/catalog/arduino/Leonardo": 2,
+                "http://some.place.com/app/catalog/arduino/due": 2,
+                "http://some.place.com/app/catalog/lemon": 1,
+                "http://some.place.com/app/catalog": 2,
+                "http://some.place.com/app/catalog/pi/B": 1,
+                "http://some.place.com/app/catalog/pi/3": 2,
+                "http://some.place.com/app/catalog/pare": 2,
+                "http://some.place.com/app/catalog/pi/4": 2,
+                "http://some.place.com/app/catalog/arduino/lilypad": 1
+            }
+        }
+    ]
+}
