@@ -5,8 +5,8 @@ Using Aerospike with Kafka - outbound from Aerospike
 
 ### Components
 The solution consists of these components
-- Zookeeper
-- Kafka
+- [Zookeeper](https://zookeeper.apache.org/)
+- [Kafka](https://kafka.apache.org/)
 - [Aerospike Enterprise Edition](https://www.aerospike.com/products/product-matrix/)
 - [Aerospike Connector for Kafka](https://www.aerospike.com/docs/connectors/enterprise/kafka/)
 - Site Tracking traffic sumulator, written in Java, to simulate tracking of users visites to a web site (Site Tracking)
