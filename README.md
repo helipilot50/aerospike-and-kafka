@@ -2,6 +2,8 @@
 Using Aerospike with Kafka - outbound from Aerospike
 
 ![Kafka Outbound](assets/kafka_outbound.png)
+(diagram curtesy of Aerospike)
+
 
 ## Companion Code
 This exeammple uses Docker and Docker Compose to create the environment to track users visits to a website, as log level data, then export it to a Kafka topic for downstream aggregation, transformation and analysis.
