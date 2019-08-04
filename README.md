@@ -12,7 +12,7 @@ The solution consists of these components
 - Site Tracking traffic sumulator, written in Java, to simulate tracking of users visites to a web site (Site Tracking)
 - Kafka Cli to view the messages
 
-![Component Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/helipilot50/aerospike-and-kafka/master/assets/component-diagram.puml)
+![Component Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/helipilot50/aerospike-and-kafka/master/assets/component-diagram.puml&fmt=svg)
 
 
 
