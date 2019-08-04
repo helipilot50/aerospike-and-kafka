@@ -1,5 +1,6 @@
 # Aerospike and Kafka
 Using Aerospike with Kafka - outbound from Aerospike
+
 ![Kafka Outbound](assets/kafka_outbound.png)
 
 ## Companion Code
