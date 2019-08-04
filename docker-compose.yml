@@ -7,8 +7,6 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
         - 2181:2181
-    networks:
-      - demo
     logging:
       driver: none
   kafka:
@@ -19,59 +17,73 @@ services:
       driver: none
     ports:
       - 9092:9092
-    networks:
-      - demo
+    links:
+      - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://kafka:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_CREATE_TOPICS: "site_tracking:1:1"
   kafkacli:
     image: taion809/kafka-cli:0.10.2.0
-    command: kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic site_tracking --from-beginning
+    command: kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic site_tracking --from-beginning
     stdin_open: true
     tty: true
-    networks:
-      - demo
     links:
       - zookeeper
+      - kafka
     depends_on:
       - zookeeper
+      - kafka
   aerospikedb:
     container_name: aerospike-enterprise-server
     build:
-      context: ./aerospike/enterprise-server/
+      context: ./enterprise-server/
       args:
-        AEROSPIKE_USER_NAME: "<user name>"
-        AEROSPIKE_PASSWORD: "<password>"
+        AEROSPIKE_USER_NAME: "<your user name>"
+        AEROSPIKE_PASSWORD: "<your password>"
     depends_on:
-    - kafka
+    - exporter
+    links:
+    - exporter  
     ports:  
     - 3000:3000
     - 3001:3001
     - 3002:3002
     - 3003:3003
-    networks:
-      demo:
-        aliases:
-          - aerospike
     volumes:
-    - ./aerospike/etc:/etc/aerospike
+    - ./aerospike/etc/aerospike:/etc/aerospike
+    - ./aerospike/etc/aerospike-kafka:/etc/aerospike-kafka
     - ./aerospike/log:/aerospike/log
     - ./aerospike/data:/aerospike/data
+  exporter:
+    container_name: aerospike-kafka-connector
+    build:
+      context: ./exporter
+      args:
+        AEROSPIKE_USER_NAME: "<your user name>"
+        AEROSPIKE_PASSWORD: "<your password>"
+    depends_on:
+    - kafka
+    - zookeeper
+    links:
+      - zookeeper
+      - kafka
+    ports:  
+    - 8080:8080
+    volumes:
+    - ./aerospike/etc/aerospike:/etc/aerospike
+    - ./aerospike/etc/aerospike-kafka:/etc/aerospike-kafka
+    - ./aerospike/log:/aerospike/log
   simulator:
     container_name: traffic_simulator
     build:
       context: ./traffic-simulator/
-    networks:
-      - demo
     links:
     - aerospikedb
     depends_on:
     - aerospikedb
-networks:
-  demo:
-    driver: bridge
+    - exporter

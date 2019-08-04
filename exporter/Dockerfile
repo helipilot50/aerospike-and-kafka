@@ -10,10 +10,6 @@ RUN apt-get update -y \
 && dpkg -i aerospike-kafka-1.0.1.deb \
 && rm -rf aerospike-kafka-1.0.1.deb
 
-# COPY ./application.yml /etc/aerospike-kafka/application.yml
-# COPY ./jetty.ini /etc/aerospike-kafka/jetty.ini
-# COPY ./features.conf /etc/aerospike/features.conf
-
 EXPOSE 8080
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
