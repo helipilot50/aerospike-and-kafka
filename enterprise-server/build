@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. resolve
+
+docker build -t aerospike/aerospike-server-enterprise:${VERSION:-latest} .
+
+
