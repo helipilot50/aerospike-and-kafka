@@ -8,10 +8,10 @@ The solution consists of these components
 - Zookeeper
 - Kafka
 - [Aerospike Enterprise Edition](https://www.aerospike.com/products/product-matrix/)
-- [Aerospike COnnector for Kafka](https://www.aerospike.com/docs/connectors/enterprise/kafka/)
+- [Aerospike Connector for Kafka](https://www.aerospike.com/docs/connectors/enterprise/kafka/)
 - Site Tracking traffic sumulator, written in Java, to simulate tracking of users visites to a web site (Site Tracking)
 
-![Component Diagram](http://www.plantuml.com/plantuml/proxy?src=http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/helipilot50/aerospike-and-kafka/master/assets/component-diagram.puml)
+![Component Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/helipilot50/aerospike-and-kafka/master/assets/component-diagram.puml)
 
 
 
