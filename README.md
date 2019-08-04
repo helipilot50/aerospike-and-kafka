@@ -7,6 +7,10 @@ Using Aerospike with Kafka - outbound from Aerospike
 ## Companion Code
 This exeammple uses Docker and Docker Compose to create the environment to track users visits to a website, as log level data, then export it to a Kafka topic for downstream aggregation, transformation and analysis.
 
+### Components
+![Component Diagram](http://www.plantuml.com/plantuml/proxy?src=)
+
+### deployment
 Docker containers
 - Zookeeper
 - Kafka
@@ -19,12 +23,12 @@ Clone the repository using:
 https://github.com/helipilot50/aerospike-and-kafka.git
 ```
 
-## Build Docker images
+#### Build Docker images
 ```bash
 sudo docker-compose build
 sudo docker-compose up
 ```
-# Run the example
+#### Run the example
 ```bash
 sudo docker-compose up
 ```
