@@ -20,19 +20,15 @@ package "Kafka and Zookeeper" {
 component [Kafka\nCluster] as kafCluster
 kafClient - kafCluster
 
-() "Zookeeper\nClient" as zooClient
 component [Zoo\nKeeper] as zookeeper
-zooClient - zookeeper
 }
 
 traffic --> asClient
 
 asee --> asOutbound
-asKafka ..> zooClient: uses
 zookeeper <..> kafCluster
 
-asKafka --> kafClient
+asKafka -r-> kafClient
 
-kafCli .d.> zooClient: uses
-kafCli -d-> kafClient
+kafCli --> kafClient
 @enduml
