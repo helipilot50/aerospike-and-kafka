@@ -1,0 +1,7 @@
+CONTAINER ID        IMAGE                              COMMAND                  CREATED             STATUS              PORTS                                        NAMES
+d6ebe8a9da6e        aerospike-and-kafka_simulator      "java -jar /usr/loca…"   14 seconds ago      Up 12 seconds                                                    traffic_simulator
+0a465878b1cd        aerospike-and-kafka_aerospikedb    "/entrypoint.sh asd"     17 seconds ago      Up 14 seconds       0.0.0.0:3000-3003->3000-3003/tcp             aerospike-enterprise-server
+8e37479f9528        aerospike-and-kafka_exporter       "/opt/aerospike-kafk…"   20 seconds ago      Up 16 seconds       0.0.0.0:8080->8080/tcp                       aerospike-kafka-connector
+51c85e505e08        taion809/kafka-cli:0.10.2.0        "/opt/run.sh kafka-c…"   20 seconds ago      Up 17 seconds                                                    aerospike-and-kafka_kafkacli_1
+a59d2159a4bc        confluentinc/cp-kafka:latest       "/etc/confluent/dock…"   22 seconds ago      Up 19 seconds       0.0.0.0:9092->9092/tcp                       aerospike-and-kafka_kafka_1
+bdb332ae431c        confluentinc/cp-zookeeper:latest   "/etc/confluent/dock…"   23 seconds ago      Up 21 seconds       2888/tcp, 0.0.0.0:2181->2181/tcp, 3888/tcp   aerospike-and-kafka_zookeeper_1

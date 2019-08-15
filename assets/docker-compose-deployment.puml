@@ -1,0 +1,55 @@
+@startuml
+left to right direction
+skinparam componentStyle uml2
+skinparam rectangle {
+    backgroundColor<<Container>> #0db7ed
+    backgroundColor<<Docker Compose>> #FFCC99
+}
+
+rectangle "Docker Compose" <<Docker Compose>> {
+    rectangle "traffic_simulator" <<Container>>{
+        [Site tracking traffic simulator]
+        note right of [Site tracking traffic simulator]
+        Java console application
+        end note
+    }
+    rectangle "aerospike-enterprise-server" <<Container>>{
+        [Aerospike Cluster]
+        note right of [Aerospike Cluster]
+        Single node Aerospike cluster
+        Ports: 3000-3003
+        end note
+    }
+    rectangle "aerospike-kafka-connector" <<Container>>{
+        [Aerospike Kafka Connector]
+        note right of [Aerospike Kafka Connector]
+        JVM application running in Jetty
+        Ports: 8080
+        end note
+
+    }
+    rectangle "aerospike-and-kafka_kafkacli" <<Container>>{
+        [Kafka Cli]
+        note right of [Kafka Cli]
+        Kafka Cli utility 
+        "reading" the topic
+        end note
+    }
+    rectangle "aerospike-and-kafka_kafka" <<Container>>{
+        [Kafka Cluster]
+        note right of [Kafka Cluster]
+        Single node Kafka
+        Ports: 9092
+        end note
+    }
+    rectangle "aerospike-and-kafka_zookeeper" <<Container>>{
+        [Zookeeper]
+        note right of [Zookeeper]
+        Simple Zookeeper
+        Ports: 2181
+        end note
+    }
+}
+
+
+@enduml
