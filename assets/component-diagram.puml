@@ -1,34 +1,47 @@
 @startuml
 
-'left to right direction
+
+skinparam componentStyle uml2
+
 together {
-component [Kafka\nCli] as kafCli
-component [Site  Tracking\nTraffice simulator] as traffic
+    package "Viewer" {
+        component [Kafka\nCli] as kafCli
+    }
+
+    package "Producer" {
+        component [Site  Tracking\nTraffice simulator] as traffic
+        component "Aerospike\nJava Client" as asClient
+    }
 }
 
-package "Aerospike" {
-() "Aerospike\nClient" as asClient
-component [Aerospike\nEnterprise\nEdition] as asee
-asClient - asee
 
-() "Outbound\nKafka" as asOutbound
-component [Aerospike\nOutbound Kafka\nConnector] as asKafka
-asOutbound - asKafka
+package "Aerospike services" {
+    () "3000" as asSocket
+    component [Aerospike\nEnterprise\nEdition] as asee
+    asSocket - asee
+
+
+    () "8080" as asOutbound
+    component [Aerospike\nOutbound Kafka\nConnector] as asKafka
+    asOutbound - asKafka
 }
+
 package "Kafka and Zookeeper" {
-() "Kafka\nclient" as kafClient
-component [Kafka\nCluster] as kafCluster
-kafClient - kafCluster
+    () "9092" as kafClient
+    component [Kafka\nCluster] as kafCluster
+    kafClient - kafCluster
 
-component [Zoo\nKeeper] as zookeeper
+    component [Zoo\nKeeper] as zookeeper
 }
 
-traffic --> asClient
+asClient <..> asSocket: TCP\nbinary\nprotocol
+traffic -r(0- asClient
 
-asee --> asOutbound
+asee ..> asOutbound: HTTP(s)
 zookeeper <..> kafCluster
 
-asKafka -r-> kafClient
+asKafka .r.> kafClient: TCP\nbinary\nprotocol
 
-kafCli --> kafClient
+kafCli <.. kafClient: TCP\nbinary\nprotocol
+
 @enduml
