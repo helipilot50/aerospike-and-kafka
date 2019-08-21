@@ -3,6 +3,8 @@ Using Aerospike with Kafka - outbound from Aerospike
 
 ![Kafka Outbound](assets/kafka_outbound.png)
 
+Read the Medium article [here](https://medium.com/@helipilot50/aerospike-and-kafka-integration-outbound-d948553f885e)
+
 ### Components
 The solution consists of these components
 - [Zookeeper](https://zookeeper.apache.org/)
