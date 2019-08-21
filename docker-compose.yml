@@ -41,8 +41,6 @@ services:
   aerospikedb:
     image: aerospike/aerospike-server-enterprise
     command: --config-file /opt/aerospike/etc/aerospike.conf
-    # environment:
-    #   FEATURE_KEY_FILE: /etc/aerospike/features.conf
     depends_on:
     - exporter
     links:
