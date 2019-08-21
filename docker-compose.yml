@@ -39,12 +39,10 @@ services:
       - zookeeper
       - kafka
   aerospikedb:
-    container_name: aerospike-enterprise-server
-    build:
-      context: ./enterprise-server/
-      args:
-        AEROSPIKE_USER_NAME: "<your user name>"
-        AEROSPIKE_PASSWORD: "<your password>"
+    image: aerospike/aerospike-server-enterprise
+    command: --config-file /opt/aerospike/etc/aerospike.conf
+    # environment:
+    #   FEATURE_KEY_FILE: /etc/aerospike/features.conf
     depends_on:
     - exporter
     links:
@@ -55,7 +53,7 @@ services:
     - 3002:3002
     - 3003:3003
     volumes:
-    - ./aerospike/etc/aerospike:/etc/aerospike
+    - ./aerospike/etc/aerospike:/opt/aerospike/etc
     - ./aerospike/etc/aerospike-kafka:/etc/aerospike-kafka
     - ./aerospike/log:/aerospike/log
     - ./aerospike/data:/aerospike/data
