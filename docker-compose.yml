@@ -40,7 +40,6 @@ services:
       - kafka
   aerospikedb:
     image: aerospike/aerospike-server-enterprise
-    command: --config-file /opt/aerospike/etc/aerospike.conf
     depends_on:
     - exporter
     links:
@@ -49,19 +48,13 @@ services:
     - 3000:3000
     - 3001:3001
     - 3002:3002
-    - 3003:3003
     volumes:
     - ./aerospike/etc/aerospike:/opt/aerospike/etc
-    - ./aerospike/etc/aerospike-kafka:/etc/aerospike-kafka
+    - ./aerospike/etc/aerospike-kafka-outbound:/etc/aerospike-kafka-outbound
     - ./aerospike/log:/aerospike/log
     - ./aerospike/data:/aerospike/data
   exporter:
-    container_name: aerospike-kafka-connector
-    build:
-      context: ./exporter
-      args:
-        AEROSPIKE_USER_NAME: "<your user name>"
-        AEROSPIKE_PASSWORD: "<your password>"
+    image: aerospike/aerospike-kafka-outbound:5.0.0
     depends_on:
     - kafka
     - zookeeper
@@ -72,7 +65,7 @@ services:
     - 8080:8080
     volumes:
     - ./aerospike/etc/aerospike:/etc/aerospike
-    - ./aerospike/etc/aerospike-kafka:/etc/aerospike-kafka
+    - ./aerospike/etc/aerospike-kafka-outbound:/etc/aerospike-kafka-outbound
     - ./aerospike/log:/aerospike/log
   simulator:
     container_name: traffic_simulator
